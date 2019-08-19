@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+             version="2.0">
+    <persistence-unit name="myPersistence">
+        <class>phoenix.entities.TemplateMessage</class>
+        <class>phoenix.entities.Birthday</class>
+        <class>phoenix.entities.User</class>
+        <properties>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.connection.url" value="${hibernate.connection.url}"/>
+            <property name="hibernate.connection.username" value="${hibernate.connection.username}"/>
+            <property name="hibernate.connection.password" value="${hibernate.connection.password}"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL94Dialect"/>
+        </properties>
+    </persistence-unit>
+</persistence>
