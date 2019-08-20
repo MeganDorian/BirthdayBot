@@ -17,24 +17,34 @@
 <div>
     <sec:authorize access="isAuthenticated()">
         <h3>All Birthdays</h3>
-        <table>
+        <table class="table">
             <tr>
                 <th>Id</th>
                 <th>User Name</th>
                 <th>Date of Birth</th>
+                <th></th>
+                <th></th>
             </tr>
             <c:forEach var="birthdays" items="${allBdays}">
                 <tr>
                     <td>${birthdays.getId()}</td>
                     <td>${birthdays.getUserName()}</td>
                     <td>${birthdays.getDateOfBirth()}</td>
+                    <td>
+                        <form action="/delete/${birthdays.getId()}" method="get">
+                            <button><img src="/images/delete.png"></button>
+                        </form>
+                    </td>
+                    <td>
+                        <form action="/editBirthday">
+                            <button><img src="/images/edit.png"></button>
+                        </form>
+                    </td>
                 </tr>
             </c:forEach>
         </table>
-        <form method="get" action="/add">
-            <p><button type="submit">Add Birthday</button>
-                <%--<button type="submit">Delete Row</button>--%>
-            </p>
+        <form method="get">
+            <p><button class="btn btn-default" type="submit" formaction="/add">Add Birthday</button>
         </form>
 
     </sec:authorize>

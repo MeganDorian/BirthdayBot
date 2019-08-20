@@ -19,7 +19,7 @@ public class TemplateService {
         this.entityManager = entityManager;
     }
 
-    public List <TemplateMessage> templateSelect () {
+    public List <TemplateMessage> templateSelectAll () {
         Query query = entityManager.createNativeQuery("select * from bdays.templates", TemplateMessage.class);
         return query.getResultList();
     }

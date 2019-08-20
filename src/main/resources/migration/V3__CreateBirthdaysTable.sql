@@ -1,7 +1,7 @@
 CREATE TABLE bdays.birthdays
 (
     id integer NOT NULL,
-    date_of_birth date,
+    date_of_birth date check (date_of_birth<=CURRENT_DATE),
     id_template integer,
     user_name varchar (100),
     CONSTRAINT birthdays_pkey PRIMARY KEY (id),

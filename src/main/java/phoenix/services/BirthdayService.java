@@ -1,5 +1,6 @@
 package phoenix.services;
 
+import org.postgresql.util.PSQLException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -9,6 +10,8 @@ import phoenix.entities.Birthday;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import java.lang.reflect.InvocationTargetException;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -38,7 +41,21 @@ public class BirthdayService {
     }
 
     @Transactional
-    public void insertBirthday(Birthday birthday) {
+    public void insertBirthday(Birthday birthday){
         entityManager.persist(birthday);
+    }
+
+    @Transactional
+    public void deleteBirthday(Birthday birthday) {
+        entityManager.remove(birthday);
+    }
+
+    @Transactional
+    public void editBirthday(List<Birthday> birthdaysToSave) {
+        List<Birthday> currentBirthdays = selectAll();
+        for (Birthday e:currentBirthdays) {
+            if (!e.equals(birthdaysToSave))
+                entityManager.merge(birthdaysToSave);
+        }
     }
 }

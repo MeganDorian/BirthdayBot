@@ -6,7 +6,7 @@ import javax.persistence.*;
 @Table(name = "templates", schema = "bdays")
 public class TemplateMessage {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column (nullable = false)
     private int id;
 

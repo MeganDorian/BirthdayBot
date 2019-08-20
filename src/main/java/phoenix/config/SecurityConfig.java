@@ -44,7 +44,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .disable()
                 .authorizeRequests()
                 .antMatchers("/css/**", "/static/**").permitAll()
-                .antMatchers("/bdays", "/add").authenticated()
+                .antMatchers("/bdays", "/add", "/templates", "/addTemplate", "/editBirthday").authenticated()
                 .antMatchers("/login").anonymous()
                 .anyRequest().permitAll()
                 .and()

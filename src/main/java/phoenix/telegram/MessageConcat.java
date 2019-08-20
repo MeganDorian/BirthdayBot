@@ -18,7 +18,7 @@ public class MessageConcat {
     }
 
     public String birthdayAndTemplateConcat (String birthday) {
-        List<TemplateMessage> list = templateService.templateSelect();
+        List<TemplateMessage> list = templateService.templateSelectAll();
         String concat = list.get(random.nextInt(list.size())).getTemplate();
         return birthday.concat(concat);
     }

@@ -1,26 +1,21 @@
 package phoenix.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.propertyeditors.CustomDateEditor;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
-import phoenix.entities.Birthday;
 import phoenix.services.BirthdayService;
-
-import javax.validation.Valid;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
+import phoenix.services.TemplateService;
 
 @Controller
 public class MainController {
 
-    @Autowired
-    private BirthdayService birthdayService;
+//    @Autowired
+//    private BirthdayService birthdayService;
+
+//    @Autowired
+//    private TemplateService templateService;
 
     @GetMapping("/login")
     public String loginPage () {
@@ -32,29 +27,46 @@ public class MainController {
         return "errorPage";
     }
 
-    @RequestMapping("/bdays")
-    public ModelAndView showBirthdaysTable() {
-        return new ModelAndView("bdays", "allBdays", birthdayService.selectAll());
-    }
+//    @RequestMapping("/bdays")
+//    public ModelAndView showBirthdaysTable() {
+//        return new ModelAndView("birthday/bdays", "allBdays", birthdayService.selectAll());
+//    }
+//
+//    @GetMapping("/add")
+//    public ModelAndView addNewBirthday() {
+//        return new ModelAndView("birthday/addBirthday");
+//    }
+//
+//    @PostMapping ("/add")
+//    public ModelAndView saveNewBirthdayInDB(@Valid @ModelAttribute("newBirthday") Birthday newBirthday,
+//                                            BindingResult result,
+//                                            Model model, NewBirthdayCheck check) {
+//        if (!result.hasErrors() && check.isNullCheck(newBirthday)) {
+//            try {
+//                birthdayService.insertBirthday(newBirthday);
+//                return new ModelAndView("birthday/bdays", "allBdays", birthdayService.selectAll());
+//            } catch (RuntimeException e) {
+//                Throwable throwable = Throwables.getRootCause(e);
+//                if (throwable instanceof PSQLException) {
+//                    model.addAttribute("inputError", "Date of birth must be less than current one");
+//                    return new ModelAndView("birthday/addBirthday");
+//                }
+//            }
+//        }
+//        else if (result.hasFieldErrors())
+//            model.addAttribute("inputError", "Please input correct values");
+//        else
+//            model.addAttribute("inputError", "You need to fill in all fields");
+//        return new ModelAndView("birthday/addBirthday");
+//    }
 
-    @GetMapping("/add")
-    public ModelAndView addNewBirthday() {
-        return new ModelAndView("addBirthday");
-    }
-
-    @PostMapping ("/add")
-    public ModelAndView saveNewBirthdayInDB(@Valid @ModelAttribute("newBirthday") Birthday newBirthday,
-                                            BindingResult result,
-                                            Model model) {
-        if (!result.hasErrors() && !newBirthday.getUserName().equals("") && newBirthday.getDateOfBirth()!=null) {
-            birthdayService.insertBirthday(newBirthday);
-            return new ModelAndView("bdays", "allBdays", birthdayService.selectAll());
-        }
-        else if (result.hasFieldErrors())
-            model.addAttribute("inputError", "Please input correct values");
-        else
-            model.addAttribute("inputError", "You need to fill in all fields");
-        return new ModelAndView("addBirthday");
-    }
-
+//    @GetMapping("/templates")
+//    public ModelAndView showTemplatesTable() {
+//        return new ModelAndView("template/templates", "allTemplates", templateService.templateSelectAll());
+//    }
+//
+//    @PostMapping("/addTemplate")
+//    public ModelAndView saveNewTemplateInDB() {
+//        return new ModelAndView("template/templates", "allTemplates", templateService.templateSelectAll());
+//    }
 }

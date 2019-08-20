@@ -44,7 +44,6 @@ public class Config implements WebMvcConfigurer {
                 properties.getProperty("hibernate.connection.username"),
                 properties.getProperty("hibernate.connection.password")).
                 schemas("bdays").locations("classpath:migration").load();
-        flyway.clean();
         flyway.migrate();
         return flyway;
     }
@@ -52,6 +51,7 @@ public class Config implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/css/**").addResourceLocations("/static/css/");
+        registry.addResourceHandler("/images/**").addResourceLocations("/static/images/");
     }
 
     @Bean
