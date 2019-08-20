@@ -31,13 +31,13 @@
                     <td>${birthdays.getUserName()}</td>
                     <td>${birthdays.getDateOfBirth()}</td>
                     <td>
-                        <form action="/delete/${birthdays.getId()}" method="get">
-                            <button><img src="/images/delete.png"></button>
+                        <form action="/bdays/${birthdays.getId()}" method="get">
+                            <button type="submit"><img src="/images/delete.png"></button>
                         </form>
                     </td>
                     <td>
-                        <form action="/editBirthday">
-                            <button><img src="/images/edit.png"></button>
+                        <form action="/editBirthday" method="post">
+                            <button type="submit"><img src="/images/edit.png"></button>
                         </form>
                     </td>
                 </tr>

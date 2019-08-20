@@ -55,10 +55,16 @@ public class BirthdayController {
         return new ModelAndView("birthday/addBirthday");
     }
 
-    @GetMapping("/editBirthday")
+    @PostMapping("/editBirthday")
     public String editBirthdayTable(Model model, @RequestBody Birthday birthday) {
         model.addAttribute("userName", birthday.getUserName());
         model.addAttribute("dateOfBirth", birthday.getDateOfBirth());
         return "editBirthday";
+    }
+
+    @GetMapping("/bdays/{id}")
+    public ModelAndView deleteRowFromBirthdayTable(@PathVariable int id) {
+        birthdayService.deleteBirthday(id);
+        return new ModelAndView("redirect:/bdays", "allBdays", birthdayService.selectAll());
     }
 }

@@ -46,8 +46,9 @@ public class BirthdayService {
     }
 
     @Transactional
-    public void deleteBirthday(Birthday birthday) {
-        entityManager.remove(birthday);
+    public void deleteBirthday(int id) {
+        entityManager.createNativeQuery("DELETE from bdays.birthdays where id=?1")
+                .setParameter(1, id).executeUpdate();
     }
 
     @Transactional

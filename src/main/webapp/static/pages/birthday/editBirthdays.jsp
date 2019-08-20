@@ -28,6 +28,9 @@
             <td><input type="date" value="${dateOfBirth}" ></td>
         </tr>
     </table>
+    <form method="get" action="/save">
+        <button type="submit">Save changes</button>
+    </form>
 </div>
 </body>
 </html>
