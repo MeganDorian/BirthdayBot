@@ -36,7 +36,7 @@ public class BirthdayService {
     }
 
     public List<Birthday> selectAll () {
-        Query query = entityManager.createNativeQuery("select * from bdays.birthdays", Birthday.class);
+        Query query = entityManager.createNativeQuery("select * from bdays.birthdays order by id", Birthday.class);
         return query.getResultList();
     }
 
@@ -52,11 +52,10 @@ public class BirthdayService {
     }
 
     @Transactional
-    public void editBirthday(List<Birthday> birthdaysToSave) {
-        List<Birthday> currentBirthdays = selectAll();
-        for (Birthday e:currentBirthdays) {
-            if (!e.equals(birthdaysToSave))
-                entityManager.merge(birthdaysToSave);
-        }
+    public void editBirthday(Birthday birthday) {
+        Birthday changed = selectById(birthday.getId());
+        changed.setDateOfBirth(birthday.getDateOfBirth());
+        changed.setUserName(birthday.getUserName());
+        entityManager.merge(changed);
     }
 }

@@ -2,6 +2,7 @@ package phoenix.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 import phoenix.entities.TemplateMessage;
 
 import javax.persistence.EntityManager;
@@ -20,7 +21,7 @@ public class TemplateService {
     }
 
     public List <TemplateMessage> templateSelectAll () {
-        Query query = entityManager.createNativeQuery("select * from bdays.templates", TemplateMessage.class);
+        Query query = entityManager.createNativeQuery("select * from bdays.templates order by id", TemplateMessage.class);
         return query.getResultList();
     }
 
@@ -28,4 +29,23 @@ public class TemplateService {
         return entityManager.find(TemplateMessage.class, id);
     }
 
+
+    @Transactional
+    public void insertNewTemplateInDB(TemplateMessage templateMessage) {
+        entityManager.persist(templateMessage);
+    }
+
+
+    @Transactional
+    public void deleteTemplate(int id) {
+        entityManager.createNativeQuery("DELETE from bdays.templates where id=?1")
+                .setParameter(1, id).executeUpdate();
+    }
+
+    @Transactional
+    public void editTemplate(TemplateMessage templateMessage) {
+        TemplateMessage changedTemplate = templateSearchId(templateMessage.getId());
+        changedTemplate.setTemplate(templateMessage.getTemplate());
+        entityManager.merge(changedTemplate);
+    }
 }

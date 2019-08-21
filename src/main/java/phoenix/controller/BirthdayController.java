@@ -3,6 +3,7 @@ package phoenix.controller;
 import com.google.common.base.Throwables;
 import org.postgresql.util.PSQLException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.View;
 import phoenix.entities.Birthday;
+import phoenix.entities.TemplateMessage;
 import phoenix.services.BirthdayService;
 import phoenix.services.NewBirthdayCheck;
 
@@ -39,7 +41,7 @@ public class BirthdayController {
         if (!result.hasErrors() && check.isNullCheck(newBirthday)) {
             try {
                 birthdayService.insertBirthday(newBirthday);
-                return new ModelAndView("birthday/bdays", "allBdays", birthdayService.selectAll());
+                return new ModelAndView("redirect:/bdays");
             } catch (RuntimeException e) {
                 Throwable throwable = Throwables.getRootCause(e);
                 if (throwable instanceof PSQLException) {
@@ -55,16 +57,27 @@ public class BirthdayController {
         return new ModelAndView("birthday/addBirthday");
     }
 
-    @PostMapping("/editBirthday")
-    public String editBirthdayTable(Model model, @RequestBody Birthday birthday) {
-        model.addAttribute("userName", birthday.getUserName());
-        model.addAttribute("dateOfBirth", birthday.getDateOfBirth());
-        return "editBirthday";
+    //save changes
+    @PostMapping("/editBirthday/{id}")
+    public ModelAndView editBirthdayTable(@Valid @ModelAttribute("saveChanges") Birthday birthday) {
+        birthdayService.editBirthday(birthday);
+        return new ModelAndView("redirect:/bdays");
     }
 
+    //set old values
+    @GetMapping("/editBirthday/{id}")
+    public String editBirthdayPage(@PathVariable("id") int id, Model model) {
+        Birthday birthday=birthdayService.selectById(id);
+        model.addAttribute("userName", birthday.getUserName());
+        model.addAttribute("dateOfBirth", birthday.getDateOfBirth());
+        return "birthday/editBirthday";
+    }
+
+
+    //delete from table
     @GetMapping("/bdays/{id}")
     public ModelAndView deleteRowFromBirthdayTable(@PathVariable int id) {
         birthdayService.deleteBirthday(id);
-        return new ModelAndView("redirect:/bdays", "allBdays", birthdayService.selectAll());
+        return new ModelAndView("redirect:/bdays");
     }
 }

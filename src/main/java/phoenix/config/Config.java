@@ -44,7 +44,7 @@ public class Config implements WebMvcConfigurer {
                 properties.getProperty("hibernate.connection.username"),
                 properties.getProperty("hibernate.connection.password")).
                 schemas("bdays").locations("classpath:migration").load();
-        flyway.clean();
+//        flyway.clean();
         flyway.migrate();
         return flyway;
     }

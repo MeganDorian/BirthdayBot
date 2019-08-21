@@ -1,25 +1,41 @@
+<%@ page pageEncoding="utf-8" contentType="text/html;charset=utf-8" language="java" %>
+<%request.setCharacterEncoding("UTF-8");%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
     <title>Add Birthday</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="<c:url value="/css/styles.css"/>" rel="stylesheet">
 </head>
 <body>
 <div>
+    <ul class="navbar">
+        <li><a href="<c:url value="/logout" />">Logout</a></li>
+        <li><a href="<c:url value="/bdays"/>">Birthdays</a></li>
+        <li><a href="<c:url value="/templates"/>">Templates</a></li>
+    </ul>
+</div>
+<div>
     <form:form modelAttribute="newBirthday" method="post" action="/add">
+        <h3>Input required values</h3>
         <h3>${inputError}</h3>
-        <p>Input user name: <input type="text" name="userName" value=""></p>
-        <p>Input birthday: <input type="date" name="dateOfBirth" value=""></p>
-        <p><button type="submit">Add</button></p>
-        <%--<a class="btn btn-default" href="/bdays" role="button">Back</a>--%>
+        <table>
+            <tr>
+                <td>Input user name: </td>
+                <td><input type="text" name="userName" value=""></td>
+            </tr>
+            <tr>
+                <td>Input birthday: </td>
+                <td><input type="date" name="dateOfBirth" value=""></td>
+            </tr>
+        </table>
+            <button type="submit">Add</button>
+        <%--<input type="submit" value="Add">--%>
+        <%--<input type="submit" value="Back" method="get" formaction="/bdays">--%>
+        <%--<form method="get" action="/bdays" id="back"><button form="back">Back</button> </form>--%>
     </form:form>
-    <form>
-        <a class="btn btn-default" href="<c:url value="/bdays"/>" role="button">Back</a>
-    </form>
 </div>
 </body>
 </html>

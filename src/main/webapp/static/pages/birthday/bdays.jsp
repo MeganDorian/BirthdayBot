@@ -1,8 +1,10 @@
-<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ page pageEncoding="utf-8" contentType="text/html;charset=utf-8" language="java" %>
+<%request.setCharacterEncoding("UTF-8");%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <html>
 <head>
+    <meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
     <title>Birthdays</title>
     <link href="<c:url value="/css/styles.css" />" rel="stylesheet">
 </head>
@@ -36,15 +38,15 @@
                         </form>
                     </td>
                     <td>
-                        <form action="/editBirthday" method="post">
+                        <form action="/editBirthday/${birthdays.getId()}" method="get">
                             <button type="submit"><img src="/images/edit.png"></button>
                         </form>
                     </td>
                 </tr>
             </c:forEach>
         </table>
-        <form method="get">
-            <p><button class="btn btn-default" type="submit" formaction="/add">Add Birthday</button>
+        <form method="get" action="/add">
+            <button type="submit">Add Birthday</button>
         </form>
 
     </sec:authorize>
