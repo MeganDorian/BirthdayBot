@@ -1,17 +1,14 @@
 package phoenix.services;
 
-import org.postgresql.util.PSQLException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import phoenix.exceptions.BirthdayException;
 import phoenix.entities.Birthday;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import java.lang.reflect.InvocationTargetException;
-import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 

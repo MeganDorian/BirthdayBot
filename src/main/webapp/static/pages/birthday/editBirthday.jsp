@@ -21,14 +21,15 @@
 <div>
     <form:form modelAttribute="saveChanges" action="/editBirthday/${id}" method="post">
     <h3>Edit row</h3>
+        <h3>${error}</h3>
     <table>
         <tr>
             <td>User name</td>
-            <td><input type="text" value="${userName}" name="userName"></td>
+            <td><input type="text" value="${userName}" name="userName" pattern="^(?!\s*$).+" required></td>
         </tr>
         <tr>
             <td>Date of Birth</td>
-            <td><input type="date" value="${dateOfBirth}" name="dateOfBirth" ></td>
+            <td><input type="date" value="${dateOfBirth}" name="dateOfBirth" required></td>
         </tr>
     </table>
         <p><button type="submit">Save changes</button></p>

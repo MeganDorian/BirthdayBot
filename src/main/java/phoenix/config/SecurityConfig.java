@@ -12,6 +12,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.csrf.CsrfFilter;
+import org.springframework.web.filter.CharacterEncodingFilter;
 import phoenix.security.UserDetailsServiceImpl;
 
 @Configuration
@@ -44,7 +46,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .disable()
                 .authorizeRequests()
                 .antMatchers("/css/**", "/static/**", "/images/**").permitAll()
-                .antMatchers("/bdays/**", "/add/**", "/templates", "/addTemplate", "/editBirthday/**").authenticated()
+                .antMatchers("/bdays/**", "/add/**", "/templates/**", "/addTemplate/**", "/editBirthday/**").authenticated()
                 .antMatchers("/login").anonymous()
                 .anyRequest().permitAll()
                 .and()
@@ -58,5 +60,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .usernameParameter("userLogin")
                 .passwordParameter("password");
 
+        CharacterEncodingFilter filter = new CharacterEncodingFilter();
+        filter.setEncoding("UTF-8");
+        filter.setForceEncoding(true);
+        http.addFilterBefore(filter, CsrfFilter.class);
     }
 }

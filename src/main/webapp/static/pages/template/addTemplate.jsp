@@ -17,19 +17,18 @@
     </ul>
 </div>
 <div>
-    <form:form modelAttribute="newTemplate" method="post" action="/addTemplate">
+    <form method="post" action="/addTemplate">
         <h3>Add new template message</h3>
-        <table>
-            <tr>
-                <td>Input birthday template:</td>
-                <td><input type="text" name="message" value=""></td>
-            </tr>
-        </table>
+        <h3>${error}</h3>
+        <p>Input birthday template:
+            <%--<textarea name="message" cols="30" rows="5" required></textarea>--%>
+            <input type="text" class="input" required name="message">
+        </p>
         <%--Input birthday template:--%>
         <%--<input type="text" name="message" value="">--%>
         <%--<textarea name="message" cols="20" rows="2" wrap="soft">${message}</textarea>--%>
         <button type="submit">Add template</button>
-    </form:form>
+    </form>
 </div>
 
 </body>

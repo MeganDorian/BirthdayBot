@@ -1,28 +1,26 @@
 package phoenix.controller;
 
-import com.google.common.base.Throwables;
-import org.postgresql.util.PSQLException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.View;
 import phoenix.entities.Birthday;
-import phoenix.entities.TemplateMessage;
+import phoenix.exceptions.BirthdayException;
 import phoenix.services.BirthdayService;
 import phoenix.services.NewBirthdayCheck;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @Controller
 public class BirthdayController {
 
     @Autowired
     private BirthdayService birthdayService;
+
+    @Autowired
+    private BirthdayException exceptions;
 
     @RequestMapping("/bdays")
     public ModelAndView showBirthdaysTable() {
@@ -43,11 +41,10 @@ public class BirthdayController {
                 birthdayService.insertBirthday(newBirthday);
                 return new ModelAndView("redirect:/bdays");
             } catch (RuntimeException e) {
-                Throwable throwable = Throwables.getRootCause(e);
-                if (throwable instanceof PSQLException) {
-                    model.addAttribute("inputError", "Date of birth must be less than current one");
+                String errorMessage=exceptions.handleThrownBirthdayExceptions(e);
+                model.addAttribute("inputError", errorMessage);
                     return new ModelAndView("birthday/addBirthday");
-                }
+//                }
             }
         }
         else if (result.hasFieldErrors())
@@ -59,8 +56,21 @@ public class BirthdayController {
 
     //save changes
     @PostMapping("/editBirthday/{id}")
-    public ModelAndView editBirthdayTable(@Valid @ModelAttribute("saveChanges") Birthday birthday) {
-        birthdayService.editBirthday(birthday);
+    public ModelAndView editBirthdayTable(@Valid @ModelAttribute("saveChanges") Birthday birthday,
+                                          BindingResult result,
+                                          Model model, @PathVariable int id) {
+        if (!result.hasErrors()) {
+            try {
+                birthdayService.editBirthday(birthday);
+            }catch (RuntimeException e) {
+                String errorMessage=exceptions.handleThrownBirthdayExceptions(e);
+                model.addAttribute("error", errorMessage);
+                model.addAttribute("id", id);
+                model.addAttribute("userName", birthday.getUserName());
+                model.addAttribute("dateOfBirth", birthday.getDateOfBirth());
+                return new ModelAndView("birthday/editBirthday");
+            }
+        }
         return new ModelAndView("redirect:/bdays");
     }
 

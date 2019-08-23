@@ -7,6 +7,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import phoenix.entities.TemplateMessage;
+import phoenix.exceptions.TemplateException;
 import phoenix.services.TemplateService;
 
 import javax.validation.Valid;
@@ -17,15 +18,30 @@ public class TemplateController {
     @Autowired
     private TemplateService templateService;
 
+    @Autowired
+    private TemplateException exception;
+
     @GetMapping("/templates")
     public ModelAndView showTemplatesTable() {
         return new ModelAndView("template/templates", "allTemplates", templateService.templateSelectAll());
     }
 
     @PostMapping("/addTemplate")
-    public ModelAndView saveNewTemplateInDB(@RequestParam ("message") String message) {
-        templateService.insertNewTemplateInDB(new TemplateMessage(0,message));
-        return new ModelAndView("redirect:/templates");
+    public ModelAndView saveNewTemplateInDB(@RequestParam ("message") String message, Model model) {
+        if (message.equals("")) {
+            model.addAttribute("error", "Template message is null");
+            return new ModelAndView("template/addTemplate");
+        }
+        else {
+            try {
+                templateService.insertNewTemplateInDB(new TemplateMessage(0, message));
+            } catch (RuntimeException e) {
+                String errorMessage = exception.handleThrownTemplateExceptions(e);
+                model.addAttribute("error", errorMessage);
+                return new ModelAndView("template/addTemplate");
+            }
+            return new ModelAndView("redirect:/templates");
+        }
     }
 
     @GetMapping("/addTemplate")
@@ -47,8 +63,23 @@ public class TemplateController {
     }
 
     @PostMapping("/editTemplate/{id}")
-    public ModelAndView saveTemplateChanges(@Valid @ModelAttribute("saveChanges") TemplateMessage template) {
-        templateService.editTemplate(template);
-        return new ModelAndView("redirect:/templates");
+    public ModelAndView saveTemplateChanges(@Valid @ModelAttribute("saveChanges") TemplateMessage template,
+                                            Model model, @PathVariable String id) {
+        if (template.getTemplate().equals("")) {
+            model.addAttribute("error", "Template message is null");
+            return new ModelAndView("template/editTemplate");
+        }
+        else {
+            try {
+                templateService.editTemplate(template);
+            } catch (RuntimeException e) {
+                String errorMessage = exception.handleThrownTemplateExceptions(e);
+                model.addAttribute("error", errorMessage);
+                model.addAttribute("id", id);
+                model.addAttribute("template", template.getTemplate());
+                return new ModelAndView("template/editTemplate");
+            }
+            return new ModelAndView("redirect:/templates");
+        }
     }
 }

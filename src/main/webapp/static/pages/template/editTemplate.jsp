@@ -19,7 +19,8 @@
 <div>
     <form:form modelAttribute="saveTemplate" action="/editTemplate/${id}" method="post">
         <h3>Edit template</h3>
-        <p>Template message: <textarea name="template" cols="20" rows="2" wrap="soft">${template}</textarea></p>
+        <h3>${error}</h3>
+        <p>Template message: <textarea name="template" cols="30" rows="5" wrap="soft" required>${template}</textarea></p>
         <p><button>Save changes</button></p>
     </form:form>
 </div>

@@ -8,6 +8,7 @@
     <meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
     <title>Add Birthday</title>
     <link href="<c:url value="/css/styles.css"/>" rel="stylesheet">
+    
 </head>
 <body>
 <div>
@@ -24,11 +25,11 @@
         <table>
             <tr>
                 <td>Input user name: </td>
-                <td><input type="text" name="userName" value=""></td>
+                <td><input type="text" name="userName" pattern="^(?!\s*$).+" required></td>
             </tr>
             <tr>
                 <td>Input birthday: </td>
-                <td><input type="date" name="dateOfBirth" value=""></td>
+                <td><input type="date" name="dateOfBirth" required></td>
             </tr>
         </table>
             <button type="submit">Add</button>
@@ -37,5 +38,19 @@
         <%--<form method="get" action="/bdays" id="back"><button form="back">Back</button> </form>--%>
     </form:form>
 </div>
+
+
+<%--<script >--%>
+    <%--function checkForEmptyInput(input) {--%>
+        <%--var s=' ';--%>
+        <%--var s = s.replace(/^\s+|\s+$/g, '');--%>
+        <%--// var userName = document.getElementsByName("userName");--%>
+        <%--if (input.value === s) {--%>
+            <%--input.setCustomValidity("Input user name please");--%>
+        <%--}--%>
+        <%--return true;--%>
+    <%--}--%>
+<%--</script>--%>
+
 </body>
 </html>

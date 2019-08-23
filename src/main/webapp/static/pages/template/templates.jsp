@@ -19,7 +19,7 @@
 </div>
 <div>
     <sec:authorize access="isAuthenticated()">
-        <h3>All Birthdays</h3>
+        <h3>All Templates</h3>
         <table class="table">
             <tr>
                 <th>Id</th>
