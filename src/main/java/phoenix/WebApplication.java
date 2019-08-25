@@ -22,6 +22,7 @@ public class WebApplication implements WebApplicationInitializer {
         ac.register(SecurityConfig.class);
 
         DispatcherServlet servlet = new DispatcherServlet(ac);
+        servlet.setThrowExceptionIfNoHandlerFound(true);
         ServletRegistration.Dynamic registration = servletContext.addServlet("ROOT", servlet);
         registration.setLoadOnStartup(1);
         registration.addMapping("/");

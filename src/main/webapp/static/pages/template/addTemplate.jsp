@@ -7,6 +7,7 @@
     <meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
     <title>Add template</title>
     <link href="<c:url value="/css/styles.css"/>" rel="stylesheet">
+    <script src="/js/inputCheck.js"></script>
 </head>
 <body>
 <div>
@@ -17,16 +18,12 @@
     </ul>
 </div>
 <div>
-    <form method="post" action="/addTemplate">
+    <form method="post" action="/addTemplate" onsubmit="isEmptyInput()">
         <h3>Add new template message</h3>
-        <h3>${error}</h3>
+        <h3 id="errorText">${error}</h3>
         <p>Input birthday template:
-            <%--<textarea name="message" cols="30" rows="5" required></textarea>--%>
-            <input type="text" class="input" required name="message">
+            <textarea id="textArea" name="message" cols="30" rows="3" required></textarea>
         </p>
-        <%--Input birthday template:--%>
-        <%--<input type="text" name="message" value="">--%>
-        <%--<textarea name="message" cols="20" rows="2" wrap="soft">${message}</textarea>--%>
         <button type="submit">Add template</button>
     </form>
 </div>

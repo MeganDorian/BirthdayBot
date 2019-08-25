@@ -45,8 +45,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf()
                 .disable()
                 .authorizeRequests()
-                .antMatchers("/css/**", "/static/**", "/images/**").permitAll()
-                .antMatchers("/bdays/**", "/add/**", "/templates/**", "/addTemplate/**", "/editBirthday/**").authenticated()
+                .antMatchers("/css/**", "/static/**", "/images/**", "/js/**").permitAll()
+                .antMatchers("/bdays/**", "/add/**", "/templates/**", "/addTemplate/**",
+                                            "/editBirthday/**", "editTemplate/**", "/404", "/400", "/500").authenticated()
                 .antMatchers("/login").anonymous()
                 .anyRequest().permitAll()
                 .and()
@@ -59,7 +60,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .failureUrl("/errorPage")
                 .usernameParameter("userLogin")
                 .passwordParameter("password");
-
         CharacterEncodingFilter filter = new CharacterEncodingFilter();
         filter.setEncoding("UTF-8");
         filter.setForceEncoding(true);

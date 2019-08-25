@@ -56,7 +56,7 @@ public class TemplateController {
     }
 
     @GetMapping("/editTemplate/{id}")
-    public String showEditTemplate(Model model, @PathVariable int id) {
+    public String showEditTemplate(@PathVariable int id, Model model) {
         TemplateMessage templateMessage = templateService.templateSearchId(id);
         model.addAttribute("template", templateMessage.getTemplate());
         return "template/editTemplate";
@@ -81,5 +81,11 @@ public class TemplateController {
             }
             return new ModelAndView("redirect:/templates");
         }
+    }
+
+    @ExceptionHandler({NullPointerException.class, RuntimeException.class})
+    public String errorPage(RuntimeException e, Model model) {
+        model.addAttribute("page", "/templates");
+        return exception.handleThrownTemplateExceptions(e);
     }
 }

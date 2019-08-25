@@ -7,6 +7,7 @@
     <meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
     <title>Edit Template</title>
     <link href="<c:url value="/css/styles.css"/>" rel="stylesheet">
+    <script src="/js/inputCheck.js"></script>
 </head>
 <body>
 <div>
@@ -17,10 +18,10 @@
     </ul>
 </div>
 <div>
-    <form:form modelAttribute="saveTemplate" action="/editTemplate/${id}" method="post">
+    <form:form modelAttribute="saveTemplate" action="/editTemplate/${id}" method="post" onsubmit="isEmptyInput()">
         <h3>Edit template</h3>
         <h3>${error}</h3>
-        <p>Template message: <textarea name="template" cols="30" rows="5" wrap="soft" required>${template}</textarea></p>
+        <p>Template message: <textarea id="textArea" name="template" cols="30" rows="5" wrap="soft" required>${template}</textarea></p>
         <p><button>Save changes</button></p>
     </form:form>
 </div>

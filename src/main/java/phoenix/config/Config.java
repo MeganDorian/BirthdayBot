@@ -53,6 +53,7 @@ public class Config implements WebMvcConfigurer {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/css/**").addResourceLocations("/static/css/");
         registry.addResourceHandler("/images/**").addResourceLocations("/static/images/");
+        registry.addResourceHandler("/js/**").addResourceLocations("/static/js/");
     }
 
     @Bean
