@@ -1,9 +1,9 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>400 Error</title>
+    <title>Access denied page</title>
     <link href="<c:url value="/css/styles.css" />" rel="stylesheet">
 </head>
 <body>
@@ -18,12 +18,8 @@
     </ul>
 </div>
 <div>
-    <form method="get" action="${page}">
-        <h3>Bad request</h3>
-        <p>Please return to the main page</p>
-        <button type="submit">Back</button>
-    </form>
-
+    <h3>Access denied</h3>
+    <p>You have no permission to view this page :(</p>
 </div>
 </body>
 </html>

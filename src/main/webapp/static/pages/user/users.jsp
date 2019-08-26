@@ -1,11 +1,9 @@
-<%@ page pageEncoding="utf-8" contentType="text/html;charset=utf-8" language="java" %>
-<%request.setCharacterEncoding("UTF-8");%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
-    <title>Birthdays</title>
+    <title>Users</title>
     <link href="<c:url value="/css/styles.css" />" rel="stylesheet">
 </head>
 <body>
@@ -21,37 +19,40 @@
 </div>
 <div>
     <sec:authorize access="isAuthenticated()">
-        <h3>All Birthdays</h3>
+        <h3>Users</h3>
         <table class="table">
             <tr>
                 <th>Id</th>
                 <th>User Name</th>
-                <th>Date of Birth</th>
+                <th>Role</th>
+                <th>Last activity</th>
+                <th>Status</th>
                 <th></th>
                 <th></th>
             </tr>
-            <c:forEach var="birthdays" items="${allBdays}">
+            <c:forEach var="users" items="${users}">
                 <tr>
-                    <td>${birthdays.getId()}</td>
-                    <td>${birthdays.getUserName()}</td>
-                    <td>${birthdays.getDateOfBirth()}</td>
+                    <td>${users.getId()}</td>
+                    <td>${users.getUserName()}</td>
+                    <td>${users.getRole()}</td>
+                    <td>${users.getLastActivity()}</td>
+                    <td>${users.getStatus()}</td>
                     <td>
-                        <form action="/bdays/${birthdays.getId()}" method="get">
+                        <form action="/users/${users.getId()}" method="get">
                             <button type="submit"><img src="/images/delete.png"></button>
                         </form>
                     </td>
                     <td>
-                        <form action="/editBirthday/${birthdays.getId()}" method="get">
+                        <form action="/editUser/${users.getId()}" method="get">
                             <button type="submit"><img src="/images/edit.png"></button>
                         </form>
                     </td>
                 </tr>
             </c:forEach>
         </table>
-        <form method="get" action="/add">
-            <button type="submit">Add Birthday</button>
+        <form method="get" action="/addUser">
+            <button type="submit">Add User</button>
         </form>
-
     </sec:authorize>
 </div>
 </body>

@@ -31,7 +31,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth
                 .userDetailsService(userDetails)
-        .passwordEncoder(passwordEncoder());
+                .passwordEncoder(passwordEncoder());
     }
 
     @Bean
@@ -46,8 +46,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .disable()
                 .authorizeRequests()
                 .antMatchers("/css/**", "/static/**", "/images/**", "/js/**").permitAll()
-                .antMatchers("/bdays/**", "/add/**", "/templates/**", "/addTemplate/**",
-                                            "/editBirthday/**", "editTemplate/**", "/404", "/400", "/500").authenticated()
+                .antMatchers("/bdays/**","/add","/editBirthday/**").hasAnyRole("USER", "ADMIN")
+                .antMatchers("/templates/**", "/addTemplate",
+                        "/editTemplate/**", "/users/**", "/addUser", "/editUser/**").hasRole("ADMIN")
+                .antMatchers("/404", "/400", "/500").authenticated()
                 .antMatchers("/login").anonymous()
                 .anyRequest().permitAll()
                 .and()
@@ -59,7 +61,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .failureUrl("/errorPage")
                 .usernameParameter("userLogin")
-                .passwordParameter("password");
+                .passwordParameter("password")
+
+                .and()
+                .exceptionHandling()
+                .accessDeniedPage("/403");
         CharacterEncodingFilter filter = new CharacterEncodingFilter();
         filter.setEncoding("UTF-8");
         filter.setForceEncoding(true);

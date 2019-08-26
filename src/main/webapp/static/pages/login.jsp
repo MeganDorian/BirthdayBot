@@ -6,7 +6,6 @@
 <head>
     <meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
     <title>Login page</title>
-    <%--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>--%>
     <link href="<c:url value="/css/styles.css" />" rel="stylesheet">
 </head>
 <body>
@@ -14,8 +13,8 @@
     <div class="form">
 <form action="/bdays" method="post" class="login-form">
     <h2>Please login</h2>
-    <input type="text" name="userLogin" value="spring">
-    <input type="password" name="password" value="12345"><br>
+    <input type="text" name="userLogin" value="meh">
+    <input type="password" name="password" value="megan"><br>
     <button type="submit">Login</button>
 </form>
     </div>

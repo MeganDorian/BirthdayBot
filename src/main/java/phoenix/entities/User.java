@@ -1,5 +1,8 @@
 package phoenix.entities;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -19,6 +22,10 @@ public class User {
     @Temporal(TemporalType.DATE)
     @Column(name = "last_activity")
     private Date lastActivity;
+
+    @Column(name="role")
+    private String role;
+
 
     public int getId() {
         return id;
@@ -57,11 +64,21 @@ public class User {
     }
 
     public void setStatus(String status) {
+
         this.status = status;
     }
 
     public String getStatus() {
         return this.status;
+    }
+
+    public void setRole(String role) {
+        String result="ROLE_".concat(role.toUpperCase());
+        this.role=result;
+    }
+
+    public String getRole(){
+        return role;
     }
 
     @Override

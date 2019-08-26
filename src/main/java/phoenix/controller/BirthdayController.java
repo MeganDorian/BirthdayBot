@@ -42,13 +42,12 @@ public class BirthdayController {
                 birthdayService.insertBirthday(newBirthday);
                 return new ModelAndView("redirect:/bdays");
             } catch (RuntimeException e) {
-                String errorMessage=exceptions.handleThrownBirthdayExceptions(e);
+                String errorMessage = exceptions.handleThrownBirthdayExceptions(e);
                 model.addAttribute("inputError", errorMessage);
-                    return new ModelAndView("birthday/addBirthday");
+                return new ModelAndView("birthday/addBirthday");
 //                }
             }
-        }
-        else if (result.hasFieldErrors())
+        } else if (result.hasFieldErrors())
             model.addAttribute("inputError", "Please input correct values");
         return new ModelAndView("birthday/addBirthday");
     }
@@ -61,7 +60,7 @@ public class BirthdayController {
         if (!result.hasErrors()) {
             try {
                 birthdayService.editBirthday(birthday);
-            }catch (RuntimeException e) {
+            } catch (RuntimeException e) {
                 exceptions.handleThrownBirthdayExceptions(e);
 //                model.addAttribute("error", errorMessage);
                 model.addAttribute("id", id);
@@ -75,10 +74,10 @@ public class BirthdayController {
 
     //set old values
     @GetMapping("/editBirthday/{id}")
-    public String editBirthdayPage(@PathVariable("id") int id, Model model){
-            Birthday birthday = birthdayService.selectById(id);
-            model.addAttribute("userName", birthday.getUserName());
-            model.addAttribute("dateOfBirth", birthday.getDateOfBirth());
+    public String editBirthdayPage(@PathVariable("id") int id, Model model) {
+        Birthday birthday = birthdayService.selectById(id);
+        model.addAttribute("userName", birthday.getUserName());
+        model.addAttribute("dateOfBirth", birthday.getDateOfBirth());
         return "birthday/editBirthday";
     }
 
@@ -96,29 +95,5 @@ public class BirthdayController {
         return exceptions.handleThrownBirthdayExceptions(e);
     }
 
-
-//    @ExceptionHandler(RuntimeException.class)
-//    @ResponseStatus(value = HttpStatus.BAD_REQUEST)
-//    public String errorPagesMustBeThrown(@PathVariable(required = false) int id,
-//                                         RuntimeException e, Model model) {
-//        model.addAttribute("id", id);
-//        return exceptions.handleThrownBirthdayExceptions(e);
-//    }
-//
-//    @RequestMapping("/editBirthday/{id}")
-//    @ResponseStatus(value = HttpStatus.NOT_FOUND)
-//    public String notFound(@PathVariable (required = false) int id, Model model, RuntimeException e) {
-//        exceptions.handleThrownBirthdayExceptions(e);
-//        model.addAttribute("id", id);
-//        return "errorPages/404";
-//    }
-//
-//    @RequestMapping("/editBirthday/{id}")
-//    @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
-//    public String internalError(@PathVariable (required = false) int id, Model model, RuntimeException e) {
-//        exceptions.handleThrownBirthdayExceptions(e);
-//        return "errorPages/500";
-//    }
 }
-
 

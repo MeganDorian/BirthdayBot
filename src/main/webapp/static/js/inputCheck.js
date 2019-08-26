@@ -5,3 +5,4 @@ function isEmptyInput() {
         text.value='';
     }
 }
+

@@ -123,9 +123,3 @@ body {
 .table tr:hover {
     background-color: #d0e1ca;
 }
-
-.input {
-    width:  100px;
-    height: 50px;
-    word-break: break-word;
-}

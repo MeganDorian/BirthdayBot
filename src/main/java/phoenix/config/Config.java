@@ -9,6 +9,7 @@ import org.springframework.jdbc.datasource.SimpleDriverDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.ViewResolver;
@@ -44,7 +45,6 @@ public class Config implements WebMvcConfigurer {
                 properties.getProperty("hibernate.connection.username"),
                 properties.getProperty("hibernate.connection.password")).
                 schemas("bdays").locations("classpath:migration").load();
-//        flyway.clean();
         flyway.migrate();
         return flyway;
     }
@@ -130,4 +130,9 @@ public class Config implements WebMvcConfigurer {
     public UserDetailsService userDetails () {
         return new UserDetailsServiceImpl();
     }
+
+//    @Bean
+//    public BCryptPasswordEncoder bCryptPasswordEncoder() {
+//        return new BCryptPasswordEncoder();
+//    }
 }

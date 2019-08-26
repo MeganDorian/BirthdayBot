@@ -3,7 +3,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>400 Error</title>
+    <title>404 Not Found</title>
     <link href="<c:url value="/css/styles.css" />" rel="stylesheet">
 </head>
 <body>
@@ -18,12 +18,7 @@
     </ul>
 </div>
 <div>
-    <form method="get" action="${page}">
-        <h3>Bad request</h3>
-        <p>Please return to the main page</p>
-        <button type="submit">Back</button>
-    </form>
-
+    <h3>No page found</h3>
 </div>
 </body>
 </html>

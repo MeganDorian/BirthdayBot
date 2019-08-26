@@ -15,7 +15,10 @@
     <ul class="navbar">
         <li><a href="<c:url value="/logout" />">Logout</a></li>
         <li><a href="<c:url value="/bdays"/>">Birthdays</a></li>
-        <li><a href="<c:url value="/templates"/>">Templates</a></li>
+        <sec:authorize access="hasAnyRole('ADMIN')">
+            <li><a href="<c:url value="/templates"/>">Templates</a></li>
+            <li><a href="<c:url value="/users"/>">Users</a></li>
+        </sec:authorize>
     </ul>
 </div>
 <div>

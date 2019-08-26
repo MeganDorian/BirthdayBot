@@ -13,7 +13,6 @@
         <h3>User not found</h3>
         <p><button type="submit"> Back </button></p>
     </form>
-    <%--<p><a href="/login" role="button">Back</a></p>--%>
 </div>
 </body>
 </html>

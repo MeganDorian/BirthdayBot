@@ -28,5 +28,6 @@ public class WebApplication implements WebApplicationInitializer {
         registration.addMapping("/");
         servletContext.addListener(new ContextLoaderListener(ac));
 
+        servlet.setThrowExceptionIfNoHandlerFound(true);
     }
 }
