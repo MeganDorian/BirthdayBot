@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -17,11 +18,10 @@ public class User {
     private String userName;
     private String login;
     private String password;
-    private String status;
+    private boolean active;
 
-    @Temporal(TemporalType.DATE)
     @Column(name = "last_activity")
-    private Date lastActivity;
+    private LocalDate lastActivity;
 
     @Column(name="role")
     private String role;
@@ -29,6 +29,10 @@ public class User {
 
     public int getId() {
         return id;
+    }
+
+    public void setId (int id) {
+        this.id=id;
     }
 
     public void setUserName(String name) {
@@ -55,34 +59,39 @@ public class User {
         return this.password;
     }
 
-    public void setLastActivity(Date date) {
+    public void setLastActivity(LocalDate date) {
         this.lastActivity = date;
     }
 
-    public Date getLastActivity() {
+    public LocalDate getLastActivity() {
         return this.lastActivity;
     }
 
-    public void setStatus(String status) {
-
-        this.status = status;
+    public void setActive(boolean active) {
+        this.active = active;
     }
 
-    public String getStatus() {
-        return this.status;
+    public boolean getActive() {
+        return this.active;
     }
 
     public void setRole(String role) {
-        String result="ROLE_".concat(role.toUpperCase());
-        this.role=result;
+        this.role=role.toUpperCase();
     }
 
     public String getRole(){
         return role;
     }
 
+    public String getStatusButton(boolean active) {
+        if(active)
+            return "Block";
+        else
+            return "Unlock";
+    }
+
     @Override
     public String toString() {
-        return id+" "+userName+" "+login+" "+password+" "+lastActivity+" "+status;
+        return "ID: "+id+" User Name: "+userName+" Login: "+login;
     }
 }

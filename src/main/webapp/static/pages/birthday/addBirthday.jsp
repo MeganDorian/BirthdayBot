@@ -29,11 +29,11 @@
         <table>
             <tr>
                 <td>Input user name: </td>
-                <td><input type="text" name="userName" pattern="^(?!\s*$).+" required></td>
+                <td><input type="text" maxlength="100" name="userName" value="${newBirthday.getUserName()}" pattern="^(?!\s*$).+" required></td>
             </tr>
             <tr>
                 <td>Input birthday: </td>
-                <td><input type="date" name="dateOfBirth" required></td>
+                <td><input type="date" name="dateOfBirth" value="${newBirthday.getDateOfBirth()}" required></td>
             </tr>
         </table>
             <button type="submit">Add</button>

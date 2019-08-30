@@ -7,6 +7,9 @@
     <meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
     <title>Birthdays</title>
     <link href="<c:url value="/css/styles.css" />" rel="stylesheet">
+    <script>
+
+    </script>
 </head>
 <body>
 <div>

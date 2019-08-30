@@ -1,5 +1,6 @@
 package phoenix.telegram;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -11,9 +12,17 @@ import phoenix.services.BirthdayService;
 @Component
 public class HappyBirthdayBot extends TelegramLongPollingBot {
     private BirthdayService birthService;
-    private static long myChatId=431874820;
     private SendMessage sendMessage;
     private MessageConcat messageConcat;
+
+    @Value("${bot.token}")
+    private String token;
+
+    @Value("${bot.chatId}")
+    private long chatId;
+
+    @Value("${bot.name}")
+    private String botName;
 
     public HappyBirthdayBot(BirthdayService birthdayService, MessageConcat msg) {
         birthService=birthdayService;
@@ -23,14 +32,13 @@ public class HappyBirthdayBot extends TelegramLongPollingBot {
 
     @Override
     public void onUpdateReceived(Update update) {
-        sendMessage.setChatId(myChatId);
+        sendMessage.setChatId(chatId);
         if (update.hasMessage() && update.getMessage().getText().equals("/start"))
             sendMessage.setText("Welcome");
         else if(update.hasMessage() && update.getMessage().hasText()) {
             try {
                 Birthday messageText = birthService.selectById((Integer.parseInt(update.getMessage().getText())));
                 sendMessage.setText(messageConcat.birthdayAndTemplateConcat(messageText.toString()));
-
             } catch (NumberFormatException e) {
                 sendMessage.setText("Incorrect input");
             } catch (IllegalArgumentException e) {
@@ -51,21 +59,21 @@ public class HappyBirthdayBot extends TelegramLongPollingBot {
 
     @Override
     public String getBotUsername() {
-        return "phoenixBirthdaysBot";
+        return botName;
     }
 
     @Override
     public String getBotToken() {
-        return "818079284:AAGUQ1a7mCm07GUHGc2WJXbBt9ydrij9KZg";
+        return token;
     }
 
     public void birthdayNotification(String msg) {
-        sendMessage.setChatId(myChatId);
+        sendMessage.setChatId(chatId);
         sendMessage.setText(msg);
         try {
             execute(sendMessage);
-        } catch (TelegramApiException e1) {
-            e1.printStackTrace();
+        } catch (TelegramApiException e) {
+            e.printStackTrace();
         }
     }
 }

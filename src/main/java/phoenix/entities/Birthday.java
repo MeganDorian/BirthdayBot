@@ -58,10 +58,6 @@ public class Birthday {
         return dateOfBirth;
     }
 
-//    public int getIdTemplate () {
-//        return msg_template.getId();
-//    }
-
     public void setUserName (String userName) {
         this.userName = userName;
     }

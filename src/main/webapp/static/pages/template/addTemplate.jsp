@@ -15,6 +15,7 @@
         <li><a href="<c:url value="/logout" />">Logout</a></li>
         <li><a href="<c:url value="/bdays"/>">Birthdays</a></li>
         <li><a href="<c:url value="/templates"/>">Templates</a></li>
+        <li><a href="<c:url value="/users"/>">Users</a></li>
     </ul>
 </div>
 <div>
@@ -22,7 +23,7 @@
         <h3>Add new template message</h3>
         <h3 id="errorText">${error}</h3>
         <p>Input birthday template:
-            <textarea id="textArea" name="message" cols="30" rows="3" required></textarea>
+            <textarea id="textArea" maxlength="200" name="message" cols="30" rows="3" required></textarea>
         </p>
         <button type="submit">Add template</button>
     </form>

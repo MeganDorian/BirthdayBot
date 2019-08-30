@@ -15,6 +15,7 @@
         <li><a href="<c:url value="/logout" />">Logout</a></li>
         <li><a href="<c:url value="/bdays"/>">Birthdays</a></li>
         <li><a href="<c:url value="/templates"/>">Templates</a></li>
+        <li><a href="<c:url value="/users"/>">Users</a></li>
     </ul>
 </div>
 <div>

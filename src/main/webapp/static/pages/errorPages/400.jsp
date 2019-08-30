@@ -20,10 +20,9 @@
 <div>
     <form method="get" action="${page}">
         <h3>Bad request</h3>
-        <p>Please return to the main page</p>
+        <p>Please return back</p>
         <button type="submit">Back</button>
     </form>
-
 </div>
 </body>
 </html>

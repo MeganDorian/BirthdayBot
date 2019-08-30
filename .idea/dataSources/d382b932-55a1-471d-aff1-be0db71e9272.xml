@@ -80,10 +80,10 @@
       <BypassRls>1</BypassRls>
     </role>
     <schema id="16" parent="2" name="bdays">
-      <ObjectId>151757</ObjectId>
+      <ObjectId>152391</ObjectId>
       <Owner>postgres</Owner>
-      <IntrospectionTimestamp>2019-08-26.10:42:01.802</IntrospectionTimestamp>
-      <IntrospectionStateNumber>228245</IntrospectionStateNumber>
+      <IntrospectionTimestamp>2019-08-28.12:46:46.238</IntrospectionTimestamp>
+      <IntrospectionStateNumber>228506</IntrospectionStateNumber>
       <Visible>1</Visible>
     </schema>
     <schema id="17" parent="2" name="information_schema">
@@ -161,38 +161,38 @@
       <Type>index</Type>
     </access-method>
     <sequence id="30" parent="16" name="birthdays_id_seq">
-      <ObjectId>151791</ObjectId>
+      <ObjectId>152425</ObjectId>
       <Owner>postgres</Owner>
-      <StateNumber>228151</StateNumber>
+      <StateNumber>228439</StateNumber>
       <SequenceIdentity>1</SequenceIdentity>
       <CacheSize>1</CacheSize>
       <DataType>bigint</DataType>
     </sequence>
     <table id="31" parent="16" name="birthdays">
-      <ObjectId>151780</ObjectId>
+      <ObjectId>152414</ObjectId>
       <Owner>postgres</Owner>
-      <StateNumber>228151</StateNumber>
+      <StateNumber>228439</StateNumber>
     </table>
     <table id="32" parent="16" name="flyway_schema_history">
-      <ObjectId>151758</ObjectId>
+      <ObjectId>152392</ObjectId>
       <Owner>postgres</Owner>
-      <StateNumber>228147</StateNumber>
+      <StateNumber>228435</StateNumber>
     </table>
     <table id="33" parent="16" name="templates">
-      <ObjectId>151768</ObjectId>
+      <ObjectId>152402</ObjectId>
       <Owner>postgres</Owner>
-      <StateNumber>228151</StateNumber>
+      <StateNumber>228439</StateNumber>
     </table>
     <table id="34" parent="16" name="users">
-      <ObjectId>151773</ObjectId>
+      <ObjectId>152407</ObjectId>
       <Owner>postgres</Owner>
-      <StateNumber>228245</StateNumber>
+      <StateNumber>228506</StateNumber>
     </table>
     <column id="35" parent="31" name="id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>228151</StateNumber>
+      <StateNumber>228439</StateNumber>
       <DefaultExpression>nextval(&apos;birthdays_id_seq&apos;::regclass)</DefaultExpression>
       <TypeId>23</TypeId>
       <SequenceName>bdays.birthdays_id_seq</SequenceName>
@@ -200,28 +200,28 @@
     <column id="36" parent="31" name="date_of_birth">
       <Position>2</Position>
       <DataType>date|0s</DataType>
-      <StateNumber>228151</StateNumber>
+      <StateNumber>228439</StateNumber>
       <TypeId>1082</TypeId>
     </column>
     <column id="37" parent="31" name="user_name">
       <Position>4</Position>
       <DataType>varchar(100)|0s</DataType>
-      <StateNumber>228151</StateNumber>
+      <StateNumber>228439</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <index id="38" parent="31" name="birthdays_pkey">
-      <ObjectId>151784</ObjectId>
+      <ObjectId>152418</ObjectId>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
     <key id="39" parent="31" name="birthdays_pkey">
-      <ObjectId>151785</ObjectId>
+      <ObjectId>152419</ObjectId>
       <ColNames>id</ColNames>
       <UnderlyingIndexName>birthdays_pkey</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
     <check id="40" parent="31" name="birthdays_date_of_birth_check">
-      <ObjectId>151783</ObjectId>
+      <ObjectId>152417</ObjectId>
       <ColNames>date_of_birth</ColNames>
       <Predicate>date_of_birth &lt;= CURRENT_DATE</Predicate>
     </check>
@@ -229,54 +229,54 @@
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>228147</StateNumber>
+      <StateNumber>228435</StateNumber>
       <TypeId>23</TypeId>
     </column>
     <column id="42" parent="32" name="version">
       <Position>2</Position>
       <DataType>varchar(50)|0s</DataType>
-      <StateNumber>228147</StateNumber>
+      <StateNumber>228435</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <column id="43" parent="32" name="description">
       <Position>3</Position>
       <DataType>varchar(200)|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>228147</StateNumber>
+      <StateNumber>228435</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <column id="44" parent="32" name="type">
       <Position>4</Position>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>228147</StateNumber>
+      <StateNumber>228435</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <column id="45" parent="32" name="script">
       <Position>5</Position>
       <DataType>varchar(1000)|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>228147</StateNumber>
+      <StateNumber>228435</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <column id="46" parent="32" name="checksum">
       <Position>6</Position>
       <DataType>integer|0s</DataType>
-      <StateNumber>228147</StateNumber>
+      <StateNumber>228435</StateNumber>
       <TypeId>23</TypeId>
     </column>
     <column id="47" parent="32" name="installed_by">
       <Position>7</Position>
       <DataType>varchar(100)|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>228147</StateNumber>
+      <StateNumber>228435</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <column id="48" parent="32" name="installed_on">
       <Position>8</Position>
       <DataType>timestamp|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>228147</StateNumber>
+      <StateNumber>228435</StateNumber>
       <DefaultExpression>now()</DefaultExpression>
       <TypeId>1114</TypeId>
     </column>
@@ -284,27 +284,27 @@
       <Position>9</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>228147</StateNumber>
+      <StateNumber>228435</StateNumber>
       <TypeId>23</TypeId>
     </column>
     <column id="50" parent="32" name="success">
       <Position>10</Position>
       <DataType>boolean|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>228147</StateNumber>
+      <StateNumber>228435</StateNumber>
       <TypeId>16</TypeId>
     </column>
     <index id="51" parent="32" name="flyway_schema_history_pk">
-      <ObjectId>151765</ObjectId>
+      <ObjectId>152399</ObjectId>
       <ColNames>installed_rank</ColNames>
       <Unique>1</Unique>
     </index>
     <index id="52" parent="32" name="flyway_schema_history_s_idx">
-      <ObjectId>151767</ObjectId>
+      <ObjectId>152401</ObjectId>
       <ColNames>success</ColNames>
     </index>
     <key id="53" parent="32" name="flyway_schema_history_pk">
-      <ObjectId>151766</ObjectId>
+      <ObjectId>152400</ObjectId>
       <ColNames>installed_rank</ColNames>
       <UnderlyingIndexName>flyway_schema_history_pk</UnderlyingIndexName>
       <Primary>1</Primary>
@@ -313,23 +313,23 @@
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>228149</StateNumber>
+      <StateNumber>228437</StateNumber>
       <TypeId>23</TypeId>
     </column>
     <column id="55" parent="33" name="message">
       <Position>2</Position>
       <DataType>varchar(200)|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>228149</StateNumber>
+      <StateNumber>228437</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <index id="56" parent="33" name="template_pkey">
-      <ObjectId>151771</ObjectId>
+      <ObjectId>152405</ObjectId>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
     <key id="57" parent="33" name="template_pkey">
-      <ObjectId>151772</ObjectId>
+      <ObjectId>152406</ObjectId>
       <ColNames>id</ColNames>
       <UnderlyingIndexName>template_pkey</UnderlyingIndexName>
       <Primary>1</Primary>
@@ -338,65 +338,66 @@
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>228150</StateNumber>
+      <StateNumber>228438</StateNumber>
       <TypeId>23</TypeId>
     </column>
     <column id="59" parent="34" name="user_name">
       <Position>2</Position>
       <DataType>varchar(100)|0s</DataType>
-      <StateNumber>228150</StateNumber>
+      <StateNumber>228438</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <column id="60" parent="34" name="login">
       <Position>3</Position>
       <DataType>varchar(50)|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>228150</StateNumber>
+      <StateNumber>228438</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <column id="61" parent="34" name="password">
       <Position>4</Position>
       <DataType>varchar(100)|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>228150</StateNumber>
+      <StateNumber>228438</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <column id="62" parent="34" name="last_activity">
       <Position>5</Position>
       <DataType>date|0s</DataType>
-      <StateNumber>228150</StateNumber>
+      <StateNumber>228438</StateNumber>
       <TypeId>1082</TypeId>
     </column>
-    <column id="63" parent="34" name="status">
+    <column id="63" parent="34" name="active">
       <Position>6</Position>
-      <DataType>varchar(10)|0s</DataType>
-      <StateNumber>228150</StateNumber>
-      <TypeId>1043</TypeId>
+      <DataType>boolean|0s</DataType>
+      <StateNumber>228506</StateNumber>
+      <TypeId>16</TypeId>
     </column>
     <column id="64" parent="34" name="role">
       <Position>7</Position>
-      <DataType>varchar(10)|0s</DataType>
-      <StateNumber>228245</StateNumber>
+      <DataType>varchar(100)|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>228442</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <index id="65" parent="34" name="users_pkey">
-      <ObjectId>151776</ObjectId>
+      <ObjectId>152410</ObjectId>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
     <index id="66" parent="34" name="users_login_key">
-      <ObjectId>151778</ObjectId>
+      <ObjectId>152412</ObjectId>
       <ColNames>login</ColNames>
       <Unique>1</Unique>
     </index>
     <key id="67" parent="34" name="users_pkey">
-      <ObjectId>151777</ObjectId>
+      <ObjectId>152411</ObjectId>
       <ColNames>id</ColNames>
       <UnderlyingIndexName>users_pkey</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
     <key id="68" parent="34" name="users_login_key">
-      <ObjectId>151779</ObjectId>
+      <ObjectId>152413</ObjectId>
       <ColNames>login</ColNames>
       <UnderlyingIndexName>users_login_key</UnderlyingIndexName>
     </key>

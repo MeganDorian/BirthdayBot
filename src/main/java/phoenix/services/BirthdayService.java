@@ -1,10 +1,9 @@
 package phoenix.services;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import phoenix.exceptions.BirthdayException;
 import phoenix.entities.Birthday;
+import phoenix.exceptions.BirthdayException;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -38,7 +37,12 @@ public class BirthdayService {
     }
 
     @Transactional
-    public void insertBirthday(Birthday birthday){
+    public void insertBirthday(Birthday birthday) throws BirthdayException {
+        if(birthday.getDateOfBirth().isAfter(LocalDate.now())) {
+            String message="TRYING TO SAVE BIRTHDAY WITH DATE OF BIRTH GREATER THAN TODAY'S "
+                    .concat(birthday.toString());
+            throw new BirthdayException(message);
+        }
         entityManager.persist(birthday);
     }
 
@@ -49,7 +53,12 @@ public class BirthdayService {
     }
 
     @Transactional
-    public void editBirthday(Birthday birthday) {
+    public void editBirthday(Birthday birthday) throws BirthdayException {
+        if(birthday.getDateOfBirth().isAfter(LocalDate.now()))  {
+            String message="TRYING TO SAVE BIRTHDAY WITH DATE OF BIRTH GREATER THAN TODAY'S "
+                    .concat(birthday.toString());
+            throw new BirthdayException(message);
+        }
         Birthday changed = selectById(birthday.getId());
         changed.setDateOfBirth(birthday.getDateOfBirth());
         changed.setUserName(birthday.getUserName());

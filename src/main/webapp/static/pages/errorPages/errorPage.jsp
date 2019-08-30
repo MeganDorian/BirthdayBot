@@ -10,7 +10,7 @@
 <body>
 <div>
     <form class="form" method="get" action="/login">
-        <h3>User not found</h3>
+        <h3>${message}</h3>
         <p><button type="submit"> Back </button></p>
     </form>
 </div>

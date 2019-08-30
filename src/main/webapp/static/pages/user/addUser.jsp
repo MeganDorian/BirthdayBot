@@ -25,15 +25,15 @@
         <table>
             <tr>
                 <td>User name</td>
-                <td><input type="text" name="userName" pattern="^(?!\s*$).+" required></td>
+                <td><input type="text" maxlength="100" value="${newUser.getUserName()}" name="userName" pattern="^(?!\s*$).+" required></td>
             </tr>
             <tr>
                 <td>Login</td>
-                <td><input type="text" name="login" pattern="^(?!\s*$).+" required></td>
+                <td><input type="text" maxlength="50" value="${newUser.getLogin()}" name="login" pattern="^(?!\s*$).+" required></td>
             </tr>
             <tr>
                 <td>Password</td>
-                <td><input type="password" name="password" pattern="^(?!\s*$).+" required></td>
+                <td><input type="password" maxlength="100" name="password" value="${password}" pattern="^(?!\s*$).+" required></td>
             </tr>
             <tr>
                 <td>Role</td>
@@ -41,15 +41,6 @@
                     <select name="role" required>
                         <option>User</option>
                         <option>Admin</option>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td>Status</td>
-                <td>
-                    <select name="status" required>
-                        <option>Active</option>
-                        <option>Blocked</option>
                     </select>
                 </td>
             </tr>

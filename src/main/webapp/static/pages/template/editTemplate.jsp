@@ -15,13 +15,14 @@
         <li><a href="<c:url value="/logout" />">Logout</a></li>
         <li><a href="<c:url value="/bdays"/>">Birthdays</a></li>
         <li><a href="<c:url value="/templates"/>">Templates</a></li>
+        <li><a href="<c:url value="/users"/>">Users</a></li>
     </ul>
 </div>
 <div>
     <form:form modelAttribute="saveTemplate" action="/editTemplate/${id}" method="post" onsubmit="isEmptyInput()">
         <h3>Edit template</h3>
         <h3>${error}</h3>
-        <p>Template message: <textarea id="textArea" name="template" cols="30" rows="5" wrap="soft" required>${template}</textarea></p>
+        <p>Template message: <textarea maxlength="200" id="textArea" name="template" cols="30" rows="5" wrap="soft" required>${template}</textarea></p>
         <p><button>Save changes</button></p>
     </form:form>
 </div>

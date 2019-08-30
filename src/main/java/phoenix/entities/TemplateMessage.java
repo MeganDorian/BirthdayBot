@@ -12,8 +12,8 @@ public class TemplateMessage {
 
     public TemplateMessage() {}
 
-    public TemplateMessage (int id, String template) {
-        this.id=id;
+    public TemplateMessage (String template) {
+//        this.id=id;
         message = template;
     }
     private String message;

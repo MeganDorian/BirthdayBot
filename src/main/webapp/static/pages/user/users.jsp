@@ -18,42 +18,52 @@
     </ul>
 </div>
 <div>
-    <sec:authorize access="isAuthenticated()">
-        <h3>Users</h3>
-        <table class="table">
-            <tr>
-                <th>Id</th>
-                <th>User Name</th>
-                <th>Role</th>
-                <th>Last activity</th>
-                <th>Status</th>
-                <th></th>
-                <th></th>
-            </tr>
-            <c:forEach var="users" items="${users}">
+    <sec:authentication property="principal.username" var="userName"/>
+        <sec:authorize access="isAuthenticated()">
+            <h3>Users</h3>
+            <h4>${error}</h4>
+            <table class="table">
                 <tr>
-                    <td>${users.getId()}</td>
-                    <td>${users.getUserName()}</td>
-                    <td>${users.getRole()}</td>
-                    <td>${users.getLastActivity()}</td>
-                    <td>${users.getStatus()}</td>
-                    <td>
-                        <form action="/users/${users.getId()}" method="get">
-                            <button type="submit"><img src="/images/delete.png"></button>
-                        </form>
-                    </td>
-                    <td>
-                        <form action="/editUser/${users.getId()}" method="get">
-                            <button type="submit"><img src="/images/edit.png"></button>
-                        </form>
-                    </td>
+                    <th>Id</th>
+                    <th>User Name</th>
+                    <th>Role</th>
+                    <th>Last activity</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
                 </tr>
-            </c:forEach>
-        </table>
-        <form method="get" action="/addUser">
-            <button type="submit">Add User</button>
-        </form>
-    </sec:authorize>
+                <c:forEach var="users" items="${users}">
+                    <tr>
+                        <td>${users.getId()}</td>
+                        <td>${users.getUserName()}</td>
+                        <td>${users.getRole()}</td>
+                        <td>${users.getLastActivity()}</td>
+                        <td>
+                            <c:if test="${userName!=users.getUserName()}">
+                            <form action="/users/${users.getId()}" method="get">
+                                <button type="submit"><img src="/images/delete.png"></button>
+                            </form>
+                            </c:if>
+                        </td>
+                        <td>
+                            <form action="/editUser/${users.getId()}" method="get">
+                                <button type="submit"><img src="/images/edit.png"></button>
+                            </form>
+                        </td>
+                        <td >
+                            <c:if test="${userName!=users.getUserName()}">
+                                <form action="/status/${users.getId()}" method="get">
+                                    <button type="submit">${users.getStatusButton(users.getActive())}</button>
+                                </form>
+                            </c:if>
+                        </td>
+                    </tr>
+                </c:forEach>
+            </table>
+            <form method="get" action="/addUser">
+                <button type="submit">Add User</button>
+            </form>
+        </sec:authorize>
 </div>
 </body>
 </html>

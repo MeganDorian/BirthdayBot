@@ -114,7 +114,7 @@ body {
 }
 
 .table th {
-    text-align: left;
+    text-align: center;
     padding: 5px;
     background-color: #778377;
     color: #fff;

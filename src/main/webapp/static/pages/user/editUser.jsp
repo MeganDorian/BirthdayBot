@@ -20,33 +20,30 @@
 </div>
 <div>
     <form:form modelAttribute="save" action="/editUser/${id}" method="post">
-        <h3>Edit row</h3>
+        <h3>You can change fields which you want</h3>
         <h3>${error}</h3>
         <table>
             <tr>
                 <td>User name</td>
-                <td><input type="text" value="${user.getUserName()}" name="userName" pattern="^(?!\s*$).+" required></td>
+                <td><input type="text" maxlength="100" value="${user.getUserName()}" name="userName" pattern="^(?!\s*$).+" required></td>
             </tr>
             <tr>
                 <td>Login</td>
-                <td><input type="text" value="${user.getLogin()}" name="login" pattern="^(?!\s*$).+" required></td>
+                <td><input type="text" maxlength="50" value="${user.getLogin()}" name="login" pattern="^(?!\s*$).+" required></td>
             </tr>
             <tr>
                 <td>Password</td>
-                <td><input type="text" name="password" pattern="^(?!\s*$).+"></td>
+                <td><input type="text" maxlength="100" name="password" pattern="^(?!\s*$).+"></td>
             </tr>
             <tr>
                 <td>Role</td>
                 <td>
-                    <input type="radio" value="admin" name="role" ${isAdmin} required>Admin
-                    <input type="radio" value="user" name="role" ${isUser} required>User
-                </td>
-            </tr>
-            <tr>
-                <td>Status</td>
-                <td>
-                    <input type="radio" name="status" value="active" ${isActive} required>Active
-                    <input type="radio" name="status" value="blocked" ${isBlocked} required>Blocked
+                    <select name="role" required>
+                        <option ${isUser}>User</option>
+                        <option ${isAdmin}>Admin</option>
+                    </select>
+                    <%--<input type="radio" value="admin" name="role" c>Admin--%>
+                    <%--<input type="radio" value="user" name="role" ${isUser}>User--%>
                 </td>
             </tr>
         </table>
